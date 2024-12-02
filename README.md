@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# Build a Generative AI Resource Planning Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to this AWS Builder Session where you'll create a full-stack TypeScript application that helps with engineer resource planning using generative AI. By the end of this session, you'll have built a practical application that:
 
-Currently, two official plugins are available:
+- Uses AWS Amplify's TypeScript-first development experience
+- Implements AI-powered resource analysis and recommendations
+- Provides interactive visualizations for resource allocation
+- Integrates authentication and data management
+- Deploys seamlessly to the cloud
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Learning Objectives
 
-## Expanding the ESLint configuration
+After completing this builder session, you will be able to:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Create a full-stack TypeScript application using AWS Amplify
+- Implement AI features using Amazon Bedrock and Anthropic Claude
+- Design and implement data models for real-world applications
+- Build interactive visualizations for resource management
+- Deploy a production-ready application to AWS
 
-- Configure the top-level `parserOptions` property like this:
+## Technical Requirements
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Before starting this workshop, please ensure you have:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- A laptop with your preferred code editor (VS Code recommended)
+- Node.js 18 or later installed
+- Git installed
+- An AWS account (provided during the session)
+- Basic familiarity with TypeScript and React
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Services Used
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Amazon Bedrock (Claude 3 Haiku)
+- Input tokens: $0.001/1K tokens
+- Output tokens: $0.005/1K tokens
+
+### AWS Amplify
+
+- Build & Deploy: Free tier available
+- Hosting: Starting at $0.01/GB served
+
+### AWS AppSync
+
+- First 1M requests/month free
+- $4.00 per million requests thereafter
