@@ -8,6 +8,7 @@ import {
     Loader,
     Tabs,
     Text,
+    Avatar,
   } from "@aws-amplify/ui-react";
   import { generateClient } from "aws-amplify/data";
   import { useEffect, useState } from "react";
@@ -63,43 +64,42 @@ import {
                   padding="1rem"
                 >
                   {(engineer) => (
-                    <Card key={engineer.id}>
-                      <Flex
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                      >
-                        <Flex direction="column" gap="0.5rem">
-                          <Text variation="primary" fontWeight="bold">
+                    <Card key={engineer.id} padding="1rem" variation="elevated">
+                    <Flex direction="row" gap="1rem" alignItems="flex-start">
+                      <Avatar
+                        src={`https://avatar.iran.liara.run/public#${engineer.id}`}
+                        size="large"
+                        alt={engineer.name}
+                      />
+                      <Flex direction="column" gap="0.5rem" flex="1">
+                        <Flex justifyContent="space-between" alignItems="center">
+                          <Text variation="primary" fontSize="1.1rem" fontWeight="bold">
                             {engineer.name}
                           </Text>
-                          <Flex gap="0.5rem">
-                            {engineer.skills
-                              ?.filter((m) => m)
-                              .map((skill) => (
-                                <Badge key={skill} variation="info">
-                                  {skill}
-                                </Badge>
-                              ))}
-                          </Flex>
+                          <Badge variation={engineer.availability ? "success" : "error"}>
+                            {engineer.availability ? "Available" : "Assigned"}
+                          </Badge>
                         </Flex>
-                        <Badge
-                          variation={engineer.availability ? "success" : "error"}
-                        >
-                          {engineer.availability ? "Available" : "Assigned"}
-                        </Badge>
+                
+                        <Flex gap="0.5rem" wrap="wrap">
+                          {engineer.skills?.filter(Boolean).map((skill) => (
+                            <Badge key={skill} variation="info" size="small">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </Flex>
+                
+                        {engineer.projectId && (
+                          <Text variation="secondary" fontSize="0.9rem">
+                            Current Project:{" "}
+                            <span style={{ fontWeight: "500" }}>
+                              {projects.find(p => p.id === engineer.projectId)?.name}
+                            </span>
+                          </Text>
+                        )}
                       </Flex>
-                      {engineer.projectId && (
-                        <Text variation="secondary">
-                          Current Project:
-                          {
-                            projects.filter(
-                              (m) => m.id === engineer.projectId,
-                            )?.[0].name
-                          }
-                        </Text>
-                      )}
-                    </Card>
+                    </Flex>
+                  </Card>
                   )}
                 </Collection>
               ),

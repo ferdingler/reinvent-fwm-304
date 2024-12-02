@@ -33,7 +33,7 @@ import {
     return (
       <Card>
         <Flex direction="column" gap="1rem">
-          <ScrollView height="500px">
+          <ScrollView height="700px">
             <AIConversation
               messages={messages}
               handleSendMessage={sendMessage}
