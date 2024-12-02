@@ -67,7 +67,7 @@ import {
                     <Card key={engineer.id} padding="1rem" variation="elevated">
                     <Flex direction="row" gap="1rem" alignItems="flex-start">
                       <Avatar
-                        src={`https://avatar.iran.liara.run/public#${engineer.id}`}
+                        src={`https://i.pravatar.cc/300#${engineer.id}`}
                         size="large"
                         alt={engineer.name}
                       />
