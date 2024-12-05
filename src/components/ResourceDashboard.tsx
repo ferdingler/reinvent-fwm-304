@@ -18,22 +18,26 @@ import {
   
   type Engineer = Schema["Engineer"]["type"];
   type Project = Schema["Project"]["type"];
+  type TimeOff = Schema["TimeOff"]["type"];
   
   export function ResourceDashboard() {
     const [engineers, setEngineers] = useState<Engineer[]>([]);
     const [projects, setProjects] = useState<Project[]>([]);
+    const [vacations, setVacations] = useState<TimeOff[]>([]);
     const [loading, setLoading] = useState(true);
   
     useEffect(() => {
       async function loadData() {
         try {
-          const [engineersData, projectsData] = await Promise.all([
+          const [engineersData, projectsData, vacationData] = await Promise.all([
             client.models.Engineer.list(),
             client.models.Project.list(),
+            client.models.TimeOff.list(),
           ]);
   
           setEngineers(engineersData.data);
           setProjects(projectsData.data);
+          setVacations(vacationData.data);
         } catch (err) {
           console.error("Error loading data:", err);
         } finally {
@@ -63,7 +67,7 @@ import {
                   gap="1rem"
                   padding="1rem"
                 >
-                  {(engineer) => (
+                  {(engineer: Engineer) => (
                     <Card key={engineer.id} padding="1rem" variation="elevated">
                     <Flex direction="row" gap="1rem" alignItems="flex-start">
                       <Avatar
@@ -150,6 +154,41 @@ import {
                       <Text variation="secondary">
                         {new Date(project.startDate).toLocaleDateString()} -{" "}
                         {new Date(project.endDate).toLocaleDateString()}
+                      </Text>
+                    </Card>
+                  )}
+                </Collection>
+              ),
+            },
+            {
+              label: "TimeOff",
+              value: "TimeOff",
+              content: (
+                <Collection
+                  items={vacations}
+                  type="list"
+                  gap="1rem"
+                  padding="1rem"
+                >
+                  {(vacation: TimeOff) => (
+                    <Card key={vacation.id}>
+                      <Flex
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                      >
+                        <Flex direction="column" gap="0.5rem">
+                          <Text variation="primary" fontWeight="bold">
+                            {engineers.find((e: Engineer) => e.id === vacation.engineerId)?.name}
+                          </Text>
+                        </Flex>
+                        <Badge variation="info">
+                          {vacation.type}
+                        </Badge>
+                      </Flex>
+                      <Text variation="secondary">
+                        {new Date(vacation.startDate).toLocaleDateString()} -{" "}
+                        {new Date(vacation.endDate).toLocaleDateString()}
                       </Text>
                     </Card>
                   )}
