@@ -52,7 +52,6 @@ export function ResourceDashboard() {
 
   return (
     <Card>
-      <Heading level={3}>Team Resources</Heading>
       <Text>
         Welcome to the Resource Planning Assistant. As a consulting agency, you
         can use this tool to optimize engineer assignments based on project
